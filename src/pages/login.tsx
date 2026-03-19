@@ -60,6 +60,7 @@ export function Login() {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
+      sessionStorage.setItem("isLoggedIn", "true");
       navigate("/");
     }, 1000);
   };

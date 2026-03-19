@@ -17,6 +17,7 @@ export function Profile() {
   };
 
   const handleLogout = () => {
+    sessionStorage.removeItem("isLoggedIn");
     navigate("/login");
   };
 
@@ -38,7 +39,7 @@ export function Profile() {
         <CardContent className="p-6 relative pt-12">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
             <div className="relative">
-              <div className="h-24 w-24 rounded-full bg-white border-4 border-white shadow-md flex items-center justify-center overflow-hidden">
+              <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-white border-4 border-white shadow-md flex items-center justify-center overflow-hidden">
                 <img
                   src="https://picsum.photos/seed/alex/200/200"
                   alt={user.name}
@@ -109,7 +110,7 @@ export function Profile() {
 
 function ProfileRow({ icon: Icon, label, value }: { icon: any, label: string, value: string }) {
   return (
-    <div className="flex items-start gap-4 p-4 sm:p-6 hover:bg-gray-50/50 transition-all duration-300 group">
+    <div className="flex items-start gap-3 p-4 sm:gap-4 sm:p-6 hover:bg-gray-50/50 transition-all duration-300 group">
       <div className="mt-0.5 bg-gray-100 p-2 rounded-lg text-gray-500 shrink-0 group-hover:bg-white group-hover:shadow-sm group-hover:text-orange-600 transition-all duration-300">
         <Icon className="h-4 w-4" />
       </div>
@@ -126,7 +127,7 @@ function ProfileRow({ icon: Icon, label, value }: { icon: any, label: string, va
 
 function ActionRow({ icon: Icon, label, description }: { icon: any, label: string, description: string }) {
   return (
-    <button className="w-full flex items-center gap-4 p-4 sm:p-6 hover:bg-gray-50/80 transition-all duration-300 text-left group">
+    <button className="w-full flex items-center gap-3 p-4 sm:gap-4 sm:p-6 hover:bg-gray-50/80 transition-all duration-300 text-left group">
       <div className="bg-gray-100 p-2.5 rounded-xl text-gray-600 shrink-0 group-hover:bg-white group-hover:shadow-md group-hover:text-orange-600 group-hover:scale-110 transition-all duration-300">
         <Icon className="h-5 w-5" />
       </div>

@@ -13,13 +13,28 @@ import { Invoices } from "@/pages/invoices";
 import { Payments } from "@/pages/payments";
 import { Profile } from "@/pages/profile";
 import { More } from "@/pages/more";
+import { useEffect, useState } from "react";
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const auth = sessionStorage.getItem("isLoggedIn");
+    setIsAuthorized(auth === "true");
+  }, []);
+
+  if (isAuthorized === null) return null;
+  if (!isAuthorized) return <Navigate to="/login" replace />;
+  
+  return <>{children}</>;
+}
 
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route element={<AppShell />}>
+        <Route element={<ProtectedRoute><AppShell /></ProtectedRoute>}>
           <Route path="/" element={<Home />} />
           <Route path="/documents" element={<Documents />} />
           <Route path="/scoring" element={<Scoring />} />
